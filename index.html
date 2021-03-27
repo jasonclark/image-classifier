@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>TensorFlow.js Transfer Learning Image Classifier</title>
+  <meta name="description" content="Prototype for testing Tensorflow.js image classification">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <!--<link rel="manifest" href="site.webmanifest">-->
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <!--<link rel="stylesheet" href="./styles/global.css">-->
+  <meta name="theme-color" content="#fafafa">
+  <!-- Load the latest version of TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+
+</head>
+
+<body>
+  <!-- Add your site or application content here -->
+  <div id="console"></div>
+  <!-- Add an image that we will use to test -->
+  <!--<img id="img" crossorigin src="https://arc.lib.montana.edu/schultz-0010/objects/hres-283.jpg" width="227" height="227"/>
+  <img id="img" src="./img/hres-151.jpg" width="227" height="227"/>
+  <img id="img" src="./img/hres-283.jpg" width="227" height="227"/>-->
+  <img id="source" src="./img/hres-523.jpg" width="227" height="227"/>
+  <!-- Load index.js after the content of the page -->
+  <script src="app.js"></script>
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
