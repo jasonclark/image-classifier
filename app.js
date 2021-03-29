@@ -2,6 +2,7 @@ let net;
 
 async function app() {
   console.log('Loading mobilenet..');
+  document.getElementById('console').innerText = `Loading the model and getting a prediction...`;  
 
   // Load the model.
   net = await mobilenet.load();
