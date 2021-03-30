@@ -12,11 +12,14 @@ async function app() {
     const img = document.getElementById('source');
     const result = await net.classify(img);
     console.log(result);
-  
+
+    // Calculate the probability in percentages
+    const probabilityPercentage = Math.round(parseFloat(result[0].probability) * 100);
+
     // Print result to target location on the web page
     document.getElementById('console').innerText = `
       prediction: ${result[0].className}\n
-      probability: ${result[0].probability}
+      probability: ${result[0].probability} (which is about ${probabilityPercentage}% confidence in the prediction)
     `;
 }
 
