@@ -1,4 +1,5 @@
 let net;
+const robot = '🤖';
 
 async function app() {
   console.log('Loading mobilenet..');
@@ -12,15 +13,30 @@ async function app() {
     const img = document.getElementById('source');
     const result = await net.classify(img);
     console.log(result);
+    
+    // Sort by probability
+    let resultElements = result.sort((a, b) => a > b)[0];
 
-    // Calculate the probability in percentages
-    const probabilityPercentage = Math.round(parseFloat(result[0].probability) * 100);
+    if (resultElements.probability > 0.2) {
+      // Convert the probability to percentages
+      const probabilityPercent = Math.round(resultElements.probability * 100);
+      // Display result
+      document.getElementById('console').innerText = `
+        ${robot} ${probabilityPercent}% certain this is a ${resultElements.className.replace(","," or")}.
+      `;
+    } else { 
+      document.getElementById('console').innerText = `
+        ${robot} I am not sure what I should recognize and my prediction probability is low.
+      `;
+    }
 
+    // Convert the probability to percentages
+    //const probabilityPercent = Math.round(result.probability * 100);
     // Print result to target location on the web page
-    document.getElementById('console').innerText = `
-      prediction: ${result[0].className}\n
-      probability: ${result[0].probability} (which is about ${probabilityPercentage}% confidence in the prediction)
-    `;
+    //document.getElementById('console').innerText = `
+      //prediction: ${result[0].className}\n
+      //probability: ${result[0].probability} (which is about ${probabilityPercent}% confidence in the prediction)
+    //`;
 }
 
 app();
