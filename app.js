@@ -60,7 +60,7 @@ async function classify() {
     `;
   } else { 
     document.getElementById('console').innerText = `
-      ${robot} I am not sure what I should recognize and my prediction probability is low.
+      ${robot} I am not sure what I should recognize and my prediction probability is low. Is this a(n) ${resultElements.className.replace(","," or")}?
     `;
   }
 
