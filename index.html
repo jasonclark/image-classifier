@@ -32,7 +32,10 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
   }
-  header, main, nav, footer {padding:var(--spacing);}
+  header,main,nav,footer {padding:var(--spacing);}
+  figure {margin:0;padding:0;}
+  img,video {max-width:100%;}
+  img {border-style:none;}
   .caption {font-size:1.3em;}
   /*medium screen view < 801px (based on 16px browser default)*/
   @media all and (max-width:50.1em) {}
@@ -49,7 +52,8 @@
 
 <body>
 <header role="banner">
-  <h1>TensorFlow.js Transfer Learning Image Classifier</h1>
+  <h1>Image Classifier</h1>
+  <p>TensorFlow.js Transfer Learning</p>
 </header>
 <main id="app" class="columns" role="main">
   <figure>
@@ -68,8 +72,7 @@
   </details>
 </main>
 <footer role="contentinfo">
-  <p>© Copyright Montana State University (MSU) Library</p>
-  <p>Created by <a href="https://twitter.com/jaclark">@jaclark</a>, the source code is available on <a href="https://github.com/jasonclark">GitHub</a>.</p>
+  <p>Created by <a href="https://twitter.com/jaclark">@jaclark</a> | Source code is available on <a href="https://github.com/jasonclark">GitHub</a> | © Copyright Montana State University (MSU) Library</p>
 </footer>
 <!-- Load app.js after the content of the page -->
 <script src="app.js"></script>
