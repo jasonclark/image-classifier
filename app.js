@@ -56,7 +56,7 @@ async function classify() {
     let probabilityPercent = Math.round(resultElements.probability * 100);
     // Display result
     document.getElementById('console').innerText = `
-      ${robot} ${probabilityPercent}% certain this is a ${resultElements.className.replace(","," or")}.
+      ${robot} ${probabilityPercent}% certain this is a(n) ${resultElements.className.replace(","," or")}.
     `;
   } else { 
     document.getElementById('console').innerText = `
