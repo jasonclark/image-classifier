@@ -16,6 +16,9 @@
   <style>
   * {box-sizing:border-box;}
   :root {
+    --foreground: #152028;
+    --background: #f8f8f8;
+    --link: #CF6679;
     --base-color: #444;
     --dark-color: #213c69;
     --light-color: #f4f5f7;
@@ -24,7 +27,7 @@
     --spacing: 1rem;
   }
   html {margin:0;padding:0;scroll-behavior:smooth;}
-  body {font-family:-apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';margin:0;padding:0;font-size:16px;line-height:1.5rem;}
+  body {background:var(--background);color:var(--foreground);font-family:-apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';margin:0;padding:0;font-size:16px;line-height:1.5rem;}
   .columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -36,6 +39,14 @@
   img,video {max-width:100%;}
   img {border-style:none;}
   .caption {font-size:1.3em;}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground:#f8f8f8;
+      --background:#152028;
+      --link:#03DAC6;
+    }
+    a{color:var(--link);}
+  }
   /*medium screen view < 801px (based on 16px browser default)*/
   @media all and (max-width:50.1em) {}
   /*small screen view < 481px (based on 16px browser default)*/
@@ -65,7 +76,7 @@
   <details>
     <summary>View unfiltered prediction results</summary>
     <ul id="unfiltered"></ul>
-    <button id="getPredictions">Get json file of unfiltered predictions</button>
+    <button id="getPredictions" type="button">Get json file of unfiltered predictions</button>
   </details>
 </main>
 <footer role="contentinfo">
