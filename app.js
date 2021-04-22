@@ -1,6 +1,11 @@
 let net;
 let output;
 const robot = '🤖';
+const img = document.getElementById("source");
+const botConsole = document.getElementById("console");
+const unfilteredList = document.getElementById("unfiltered");
+const getPredictions = document.getElementById("getPredictions");
+const predictions = [];
 
 window.onload = () => {
   // Load random image from data.json for prediction analysis
@@ -11,11 +16,10 @@ window.onload = () => {
     }
     return response.json();
   })
-  .then(imgList => { 
-    //console.log(imgList);
-    let imgSrc = imgList.images[Math.floor(Math.random() * imgList.images.length)];
+  .then(({images}) => { 
+    //console.log(images);
+    let imgSrc = images[Math.floor(Math.random() * images.length)];
     //console.log(imgSrc);
-    const img = document.getElementById('source');
     // Set img attributes
     img.setAttribute("src", `./assets/img/${imgSrc}`);
     img.setAttribute("height", '264');
@@ -35,17 +39,22 @@ async function classify() {
   console.log('Successfully loaded model');
 
   // Make a prediction through the model on our image.
-  const img = document.getElementById('source');
   const result = await net.classify(img);
   console.log(result);
   
+  // Collect prediction values and preformat for downloadable json file
+  const information = {
+    name: img.src,
+    labels: result,
+  }
+  predictions.push(information);
+
   // Loop through and print complete prediction array results
-  result.forEach((item, index) => {
-    //console.log(`index: ${index}, label: ${item.className}, confidence: ${item.probability}`);
+  result.forEach(({className, probability}, index) => {
     output = `
-      <li>index: ${index}, label: ${item.className}, confidence: ${item.probability}</li>
+      <li>index: ${index}, label: ${className}, confidence: ${probability}</li>
     `;
-    document.getElementById('unfiltered').innerHTML += `${output}`;
+    unfilteredList.innerHTML += `${output}`;
   });
     
   // Sort by probability
@@ -55,22 +64,32 @@ async function classify() {
     // Convert the probability to percentages
     let probabilityPercent = Math.round(resultElements.probability * 100);
     // Display result
-    document.getElementById('console').innerText = `
+    botConsole.innerText = `
       ${robot} ${probabilityPercent}% certain this is a(n) ${resultElements.className.replace(","," or")}.
     `;
   } else { 
-    document.getElementById('console').innerText = `
+    botConsole.innerText = `
       ${robot} I am not sure what I should recognize and my prediction probability is low. Is this a(n) ${resultElements.className.replace(","," or")}?
     `;
   }
+}
 
-  // Convert the probability to percentages
-  //const probabilityPercent = Math.round(result.probability * 100);
-  // Print result to target location on the web page
-  //document.getElementById('console').innerText = `
-    //prediction: ${result[0].className}\n
-    //probability: ${result[0].probability} (which is about ${probabilityPercent}% confidence in the prediction)
-  //`;
+function download(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], {
+    type: contentType,
+  });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+}
+
+function savePredictions() {
+  predictionsJSON = {
+    predictions,
+  };
+  download(JSON.stringify(predictionsJSON), "predictions.json", "text/plain");
 }
 
 classify();
+getPredictions.onclick = savePredictions;
