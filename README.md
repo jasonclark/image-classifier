@@ -1,5 +1,5 @@
 # image-classifer
-An example of transfer learning using the Tensorflow machine learning library. Sample app uses images from local digital collection to benchmark predictions. It is live at [www.lib.montana.edu/~jason/files/image-classifier/](https://www.lib.montana.edu/~jason/files/image-classifier/).
+An example of transfer learning using the Tensorflow machine learning library. Sample app uses images from local digital collection to benchmark predictions. It is live at [www.jasonclark.info/files/image-classifier/](https://www.jasonclark.info/files/image-classifier/).
 
 ## Getting Started
  1. [Download the image-classifier files](https://github.com/jasonclark/image-classifier/archive/refs/heads/main.zip) or clone the repository.
